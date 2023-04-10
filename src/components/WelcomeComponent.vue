@@ -1,6 +1,37 @@
+<script setup>
+import {computed, onMounted, ref, defineEmits} from "vue";
+
+
+const emit = defineEmits(['hideWelcomePage'])
+const welcomeString = 'PORTFOLIO'
+const pageHidden = ref(false)
+const letters = computed(() => {
+  return welcomeString.split('')
+})
+
+
+// random padding for letters
+function randomPadding() {
+  return Math.floor(Math.random() * 20)+2
+}
+
+onMounted(() => {
+  console.log('mounted')
+  // hide welcome page after 4 seconds
+  setTimeout(() => {
+    emit('hideWelcomePage')
+  }, 5000)
+  setTimeout(() => {
+    pageHidden.value = true
+  }, 2000)
+})
+
+</script>
+
 <template>
   <div
       class="welcome-page"
+      :class="{ 'welcome-page--hidden': pageHidden }"
       @mousemove="$forceUpdate()"
   >
     <div class="welcome-page__letters">
@@ -15,32 +46,23 @@
     </div>
   </div>
 </template>
-
-<script>
-
-export default {
-  name: "WelcomePage.vue",
-  data() {
-    return {
-      letters: [
-        "H", "E", "L", "L", "O ", "-" , "W", "O", "R", "L", "D"
-      ]
-    }
-  },
-  methods: {
-    // random padding for letters
-    randomPadding() {
-      return Math.floor(Math.random() * 20)+2
-    },
-  }
-}
-</script>
-
 <style scoped lang="scss">
 .welcome-page{
   background: #F08867;
   width: 100vw;
   height: 100vh;
+  bottom: 0;
+  top: 0;
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  opacity: 1;
+  transition: opacity 3s;
+
+  &--hidden {
+    opacity: 0;
+  }
+
   &__letters{
     display: flex;
     justify-content: center;

@@ -1,16 +1,22 @@
 <template>
 <div class="home-page">
   <div class="home-page__background">
+    <SiteMenu class="home-page__menu"/>
     <div class="home-page__title">
-      <div>Welcome to our website</div>
+      <div>Portfolio</div>
+      <div class="home-page__subtitle">Добро пожаловать на наш сайт</div>
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import SiteMenu from "./SiteMenu.vue"
 export default {
-  name: "HomePage.vue"
+  name: "HomePage.vue",
+  components: {
+    SiteMenu
+  }
 }
 </script>
 
@@ -22,6 +28,7 @@ export default {
   background-size: cover;
   &__title{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -29,11 +36,23 @@ export default {
     font-weight: 700;
     font-size: 24px;
   }
+  &__subtitle{
+    font-size: 18px;
+    font-weight: 400;
+  }
+  &__menu{
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
 }
 @media (min-width: 1440px) {
   .home-page{
     &__title{
       font-size: 48px;
+    }
+    &__subtitle{
+      font-size: 18px;
     }
   }
 }
