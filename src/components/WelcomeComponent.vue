@@ -16,11 +16,11 @@ function randomPadding() {
 }
 
 onMounted(() => {
-  console.log('mounted')
   // hide welcome page after 4 seconds
   setTimeout(() => {
     emit('hideWelcomePage')
   }, 5000)
+  //enable block disappearance after 2 seconds
   setTimeout(() => {
     pageHidden.value = true
   }, 2000)

@@ -7,13 +7,20 @@ export const MENU_ITEMS = {
         title: 'О нас',
         path: '/about',
     },
-    FORM_CONSTRUCTOR:{
-        title: 'Конструктор форм',
+    MODULES:{
+        title: 'Модули',
         path: '/',
-    },
-    SCHEDULE:{
-        title: 'Расписание',
-        path: '/',
+        children:[
+        {
+            title: 'Конструктор форм',
+            path: '/form-constructor',
+        },
+            {
+            title: 'Расписание',
+            path: '/schedule'
+            }
+        ]
+
     },
     CONTACT:{
         title: 'Контакты',
